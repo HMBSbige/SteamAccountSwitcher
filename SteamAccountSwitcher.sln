@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamAccountSwitcher", "SteamAccountSwitcher\SteamAccountSwitcher.csproj", "{EBE2AF32-AE65-4AA3-867C-1C21A3B342F5}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vdf", "Vdf\Vdf.shproj", "{C014A4BC-9E01-473E-B2AF-83A8CC28EAFC}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Vdf\Vdf.projitems*{c014a4bc-9e01-473e-b2af-83a8cc28eafc}*SharedItemsImports = 13
+		Vdf\Vdf.projitems*{ebe2af32-ae65-4aa3-867c-1c21a3b342f5}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBE2AF32-AE65-4AA3-867C-1C21A3B342F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBE2AF32-AE65-4AA3-867C-1C21A3B342F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBE2AF32-AE65-4AA3-867C-1C21A3B342F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBE2AF32-AE65-4AA3-867C-1C21A3B342F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2BF4FE9-DDEB-4F27-A081-D2CBF35AB7F7}
+	EndGlobalSection
+EndGlobal
