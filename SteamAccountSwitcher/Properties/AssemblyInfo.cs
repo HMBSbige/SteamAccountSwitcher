@@ -6,9 +6,9 @@ using System.Windows;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SteamAccountSwitcher")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Quickly switch steam accounts")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Wayne Enterprises")]
 [assembly: AssemblyProduct("SteamAccountSwitcher")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]

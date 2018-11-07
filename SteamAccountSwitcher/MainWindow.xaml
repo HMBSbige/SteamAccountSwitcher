@@ -1,12 +1,21 @@
-﻿<Window x:Class="SteamAccountSwitcher.MainWindow"
+﻿<Window x:Name="Window0" x:Class="SteamAccountSwitcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SteamAccountSwitcher"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="SteamAccountSwitcher" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Width="315" Height="206" Initialized="Window0_Initialized">
+	<Grid>
+		<ComboBox x:Name="UsersBox" Margin="118,10,10,0" VerticalAlignment="Top" SelectionChanged="UsersBox_SelectionChanged"/>
+		<Label Content="AccountName:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+		<Label Content="PersonaName:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+		<Label Content="Last login time:" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+		<Button x:Name="SwitchAccountButton" Content="Switch" Margin="10,130,10,10" Click="Button_Click"/>
+		<TextBox x:Name="LaunchOptionsTextBox" Height="23" Margin="118,102,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+		<Label Content="Launch Options:" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
+		<TextBox x:Name="PersonaNameBox" Height="23" Margin="118,42,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True"/>
+		<TextBox x:Name="LastLoginTimeBox" Height="23" Margin="118,72,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True"/>
+
+	</Grid>
 </Window>
