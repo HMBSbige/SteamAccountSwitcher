@@ -17,11 +17,11 @@ namespace SteamAccountSwitcher
 		private string _steamExePath;
 		private List<LoginUsers> _users;
 
-		public MainWindow()
+		public MainWindow(string args)
 		{
 			try
 			{
-				Init();
+				Init(args);
 			}
 			catch (IOException ex)
 			{
@@ -37,9 +37,9 @@ namespace SteamAccountSwitcher
 			InitializeComponent();
 		}
 
-		private void Init()
+		private void Init(string args)
 		{
-			_steamStartupArgs = App.StartupArgs;
+			_steamStartupArgs = args;
 
 			_steamExePath = SteamClientHelper.GetExePath();
 			if (!File.Exists(_steamExePath))
@@ -96,10 +96,7 @@ namespace SteamAccountSwitcher
 			t.Start();
 			t.ContinueWith(task =>
 			{
-				Dispatcher?.InvokeAsync(() =>
-				{
-					IsEnabled = true;
-				});
+				Dispatcher?.InvokeAsync(() => { IsEnabled = true; });
 			});
 		}
 	}

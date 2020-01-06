@@ -1,22 +1,54 @@
-﻿using System.Text;
+﻿using SteamAccountSwitcher.SingleInstance;
+using SteamAccountSwitcher.Utils;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Windows;
 
 namespace SteamAccountSwitcher
 {
 	public partial class App
 	{
-		public static string StartupArgs;
-		protected override void OnStartup(StartupEventArgs e)
+		private static int _exited;
+
+		private void App_OnStartup(object sender, StartupEventArgs e)
 		{
-			var sb = new StringBuilder();
-
-			foreach (var arg in e.Args)
+			Directory.SetCurrentDirectory(Path.GetDirectoryName(Util.GetExecutablePath()) ?? throw new InvalidOperationException());
+			var identifier = $@"Global\SteamAccountSwitcher_{Directory.GetCurrentDirectory().GetDeterministicHashCode()}";
+			var singleInstance = new SingleInstance.SingleInstance(identifier);
+			if (!singleInstance.IsFirstInstance)
 			{
-				sb.Append(' ');
-				sb.Append(arg);
+				singleInstance.PassArgumentsToFirstInstance(e.Args.Append(Constants.ParameterShow));
+				Current.Shutdown();
+				return;
 			}
+			singleInstance.ArgumentsReceived += SingleInstance_ArgumentsReceived;
+			singleInstance.ListenForArgumentsFromSuccessiveInstances();
+			Current.DispatcherUnhandledException += (o, args) =>
+			{
+				if (Interlocked.Increment(ref _exited) == 1)
+				{
+					MessageBox.Show($@"未捕获异常：{args.Exception}", @"SteamAccountSwitcher", MessageBoxButton.OK, MessageBoxImage.Error);
+					singleInstance.Dispose();
+					Current.Shutdown();
+				}
+			};
+			Current.Exit += (o, args) =>
+			{
+				singleInstance.Dispose();
+			};
 
-			StartupArgs = sb.ToString();
+			MainWindow = new MainWindow(string.Join(@" ", e.Args));
+			MainWindow.Show();
+		}
+
+		private void SingleInstance_ArgumentsReceived(object sender, ArgumentsReceivedEventArgs e)
+		{
+			if (e.Args.Contains(Constants.ParameterShow))
+			{
+				Dispatcher?.InvokeAsync(() => { MainWindow?.ShowWindow(); });
+			}
 		}
 	}
 }
