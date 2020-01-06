@@ -13,7 +13,7 @@ namespace SteamAccountSwitcher.Utils
 	{
 		public static DateTime GetTime(string timeStamp)
 		{
-			var dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+			var dtStart = TimeZoneInfo.ConvertTimeFromUtc(new DateTime(1970, 1, 1), TimeZoneInfo.Utc);
 			var lTime = long.Parse($@"{timeStamp}0000000");
 			var toNow = new TimeSpan(lTime);
 			return dtStart.Add(toNow);

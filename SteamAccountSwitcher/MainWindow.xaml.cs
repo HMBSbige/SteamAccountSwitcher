@@ -11,9 +11,6 @@ using System.Windows;
 
 namespace SteamAccountSwitcher
 {
-	/// <summary>
-	/// MainWindow.xaml 的交互逻辑
-	/// </summary>
 	public partial class MainWindow
 	{
 		private string _steamStartupArgs;
@@ -88,7 +85,7 @@ namespace SteamAccountSwitcher
 			IsEnabled = false;
 			var t = new Task(() =>
 			{
-				Dispatcher.Invoke(() =>
+				Dispatcher?.InvokeAsync(() =>
 				{
 					var username = _users[UsersBox.SelectedIndex].AccountName;
 					SteamClientHelper.SetAutoLoginUser(username);
@@ -99,7 +96,7 @@ namespace SteamAccountSwitcher
 			t.Start();
 			t.ContinueWith(task =>
 			{
-				Dispatcher.Invoke(() =>
+				Dispatcher?.InvokeAsync(() =>
 				{
 					IsEnabled = true;
 				});
