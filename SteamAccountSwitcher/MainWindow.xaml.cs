@@ -80,24 +80,17 @@ namespace SteamAccountSwitcher
 			}
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private async void Button_Click(object sender, RoutedEventArgs e)
 		{
 			IsEnabled = false;
-			var t = new Task(() =>
+			await Task.Run(() => Dispatcher?.InvokeAsync(() =>
 			{
-				Dispatcher?.InvokeAsync(() =>
-				{
-					var username = _users[UsersBox.SelectedIndex].AccountName;
-					SteamClientHelper.SetAutoLoginUser(username);
-					SteamClientHelper.SetRememberPassword(true);
-					WinProcess.Restart(_steamExePath, LaunchOptionsTextBox.Text);
-				});
-			});
-			t.Start();
-			t.ContinueWith(task =>
-			{
-				Dispatcher?.InvokeAsync(() => { IsEnabled = true; });
-			});
+				var username = _users[UsersBox.SelectedIndex].AccountName;
+				SteamClientHelper.SetAutoLoginUser(username);
+				SteamClientHelper.SetRememberPassword(true);
+				WinProcess.Restart(_steamExePath, LaunchOptionsTextBox.Text);
+			}));
+			IsEnabled = true;
 		}
 	}
 }

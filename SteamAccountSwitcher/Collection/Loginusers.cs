@@ -7,12 +7,19 @@ namespace SteamAccountSwitcher.Collection
 	{
 		public LoginUsers(VProperty volvo)
 		{
-			SteamId64 = ulong.Parse(volvo.Key);
-			AccountName = volvo.Value[@"AccountName"].ToString();
-			PersonaName = volvo.Value[@"PersonaName"].ToString();
-			RememberPassword = int.Parse(volvo.Value[@"RememberPassword"].ToString()) == 1;
-			MostRecent = int.Parse(volvo.Value[@"mostrecent"].ToString()) == 1;
-			LastLoginTime = Utils.Util.GetTime(volvo.Value[@"Timestamp"].ToString());
+			try
+			{
+				SteamId64 = ulong.Parse(volvo.Key);
+				AccountName = volvo.Value[@"AccountName"]!.ToString();
+				PersonaName = volvo.Value[@"PersonaName"]!.ToString();
+				RememberPassword = int.Parse(volvo.Value[@"RememberPassword"]!.ToString()) == 1;
+				MostRecent = int.Parse(volvo.Value[@"MostRecent"]!.ToString()) == 1;
+				LastLoginTime = Utils.Util.GetTime(volvo.Value[@"Timestamp"]!.ToString());
+			}
+			catch
+			{
+				RememberPassword = false;
+			}
 		}
 
 		public ulong SteamId64 { get; }

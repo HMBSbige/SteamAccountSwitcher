@@ -57,7 +57,10 @@ namespace SteamAccountSwitcher.Utils
 			dynamic volvo = VdfConvert.Deserialize(GetLoginUsersConfig());
 			VToken v2 = volvo.Value;
 
-			return v2.Children().Select(child => new LoginUsers(child)).Where(user => user.RememberPassword).ToList();
+			return v2.Children()
+				.Where(child => child is VProperty)
+				.Select(child => new LoginUsers((VProperty)child))
+				.Where(user => user.RememberPassword);
 		}
 
 		public static string GetDllPath()
