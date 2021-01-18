@@ -1,5 +1,4 @@
-﻿using SteamAccountSwitcher.SingleInstance;
-using SteamAccountSwitcher.Utils;
+﻿using SteamAccountSwitcher.Utils;
 using System;
 using System.IO;
 using System.Linq;
@@ -23,7 +22,8 @@ namespace SteamAccountSwitcher
 				Current.Shutdown();
 				return;
 			}
-			singleInstance.ArgumentsReceived += SingleInstance_ArgumentsReceived;
+
+			singleInstance.ArgumentsReceived.Subscribe(SingleInstance_ArgumentsReceived);
 			singleInstance.ListenForArgumentsFromSuccessiveInstances();
 			Current.DispatcherUnhandledException += (o, args) =>
 			{
@@ -31,23 +31,20 @@ namespace SteamAccountSwitcher
 				{
 					MessageBox.Show($@"未捕获异常：{args.Exception}", @"SteamAccountSwitcher", MessageBoxButton.OK, MessageBoxImage.Error);
 					singleInstance.Dispose();
-					Current.Shutdown();
+					Environment.Exit(1);
 				}
 			};
-			Current.Exit += (o, args) =>
-			{
-				singleInstance.Dispose();
-			};
+			Current.Exit += (o, args) => singleInstance.Dispose();
 
 			MainWindow = new MainWindow(string.Join(@" ", e.Args));
 			MainWindow.Show();
 		}
 
-		private void SingleInstance_ArgumentsReceived(object sender, ArgumentsReceivedEventArgs e)
+		private void SingleInstance_ArgumentsReceived(string[] args)
 		{
-			if (e.Args.Contains(Constants.ParameterShow))
+			if (args.Contains(Constants.ParameterShow))
 			{
-				Dispatcher?.InvokeAsync(() => { MainWindow?.ShowWindow(); });
+				Dispatcher?.InvokeAsync(() => MainWindow?.ShowWindow());
 			}
 		}
 	}

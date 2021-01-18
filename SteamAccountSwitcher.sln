@@ -3,14 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vdf", "Vdf\Vdf.shproj", "{C014A4BC-9E01-473E-B2AF-83A8CC28EAFC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamAccountSwitcher", "SteamAccountSwitcher\SteamAccountSwitcher.csproj", "{AD538A33-9E65-4467-8FFF-55B71C23EF03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SteamAccountSwitcher", "SteamAccountSwitcher\SteamAccountSwitcher.csproj", "{AD538A33-9E65-4467-8FFF-55B71C23EF03}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Vdf\Vdf.projitems*{c014a4bc-9e01-473e-b2af-83a8cc28eafc}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

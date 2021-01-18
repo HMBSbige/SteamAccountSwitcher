@@ -6,9 +6,8 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\steam_tray.ico</ApplicationIcon>
     <Authors>HMBSbige</Authors>
-    <Company>Wayne Enterprises</Company>
-    <Copyright>Copyright © HMBSbige 2018 - 2020</Copyright>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <Copyright>Copyright © 2018 - 2021 HMBSbige</Copyright>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <Description>Switch your saved steam account.</Description>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
@@ -21,7 +20,11 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
-  <Import Project="..\Vdf\Vdf.projitems" Label="Shared" />
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="4.1.0" />
+    <PackageReference Include="Gameloop.Vdf" Version="0.5.0" />
+    <PackageReference Include="HMBSbige.SingleInstance" Version="5.0.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
